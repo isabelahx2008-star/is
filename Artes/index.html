@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="Uma jornada pela história do Impressionismo, Expressionismo e a obra de Vincent van Gogh.">
+  <title>Entre Luzes & Emoções — História da Arte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Entre Luzes e Emoções, início">
+      <span class="brand-mark">E</span>
+      <span>Entre Luzes <span style="color:var(--gold)">&</span> Emoções</span>
+    </a>
+    <span class="edition">Uma jornada pela história da arte &nbsp;·&nbsp; Edição 01</span>
+  </header>
+
+  <main class="slides" aria-label="Jornada pela história da arte">
+    <section class="slide active" data-title="Impressionismo" aria-hidden="false">
+      <div class="slide-art art-impression" role="img" aria-label="Impressão, nascer do sol, de Claude Monet"></div>
+      <div class="slide-content">
+        <p class="eyebrow">01 &nbsp;·&nbsp; Movimento artístico</p>
+        <h1>Impres-<br>sionismo</h1>
+        <p class="subtitle">A luz em movimento. Um olhar livre que transformou a maneira de pintar — e de ver — o mundo.</p>
+        <div class="actions">
+          <button class="button learn-more" data-topic="impressionismo">Saiba mais <span class="arrow">↗</span></button>
+          <button class="text-button next-button">Próximo capítulo &nbsp;→</button>
+        </div>
+      </div>
+      <div class="slide-caption">Luz, instante &amp; atmosfera <span>— França, 1870</span></div>
+    </section>
+
+    <section class="slide" data-title="Expressionismo" aria-hidden="true">
+      <div class="slide-art art-expression" role="img" aria-label="O Grito, de Edvard Munch"></div>
+      <div class="slide-content">
+        <p class="eyebrow">02 &nbsp;·&nbsp; Movimento artístico</p>
+        <h1>Expres-<br>sionismo</h1>
+        <p class="subtitle">A realidade vista por dentro. Cor, forma e gesto a serviço da emoção humana.</p>
+        <div class="actions">
+          <button class="button learn-more" data-topic="expressionismo">Saiba mais <span class="arrow">↗</span></button>
+          <button class="text-button next-button">Próximo capítulo &nbsp;→</button>
+        </div>
+      </div>
+      <div class="slide-caption">A força da expressão <span>— Europa, 1905</span></div>
+    </section>
+
+    <section class="slide" data-title="Vincent van Gogh" aria-hidden="true">
+      <div class="slide-art art-vangogh" role="img" aria-label="A Noite Estrelada, de Vincent van Gogh"></div>
+      <div class="slide-content">
+        <p class="eyebrow">03 &nbsp;·&nbsp; Artista em destaque</p>
+        <h1>Vincent<br><em>van Gogh</em></h1>
+        <p class="subtitle">Uma vida breve, uma obra imensa. Pinceladas que fizeram da cor uma linguagem da alma.</p>
+        <div class="actions">
+          <button class="button learn-more" data-topic="vangogh">Saiba mais <span class="arrow">↗</span></button>
+          <button class="text-button next-button">Próximo capítulo &nbsp;→</button>
+        </div>
+      </div>
+      <div class="slide-caption">Pintar com o coração <span>— Países Baixos, 1853</span></div>
+    </section>
+
+    <section class="slide" data-title="Vídeo final" aria-hidden="true">
+      <div class="slide-art art-video" role="img" aria-label="Galeria de arte em penumbra"></div>
+      <div class="slide-content">
+        <p class="eyebrow">04 &nbsp;·&nbsp; Para assistir</p>
+        <h1>A arte<br>em <em>movimento</em></h1>
+        <p class="subtitle">Uma pausa para olhar mais de perto. O vídeo local da exposição está pronto para ser reproduzido aqui.</p>
+        <div class="actions">
+          <a class="button open-video" href="videos/index.html">Abrir espaço de vídeo <span class="arrow">↗</span></a>
+        </div>
+        <div class="video-card">Uma experiência audiovisual</div>
+      </div>
+      <div class="slide-caption">Imagem, som &amp; contemplação <span>— Sala de projeção</span></div>
+    </section>
+  </main>
+
+  <nav class="navigation" aria-label="Navegação por capítulos">
+    <button class="nav-index active" aria-label="Capítulo 1: Impressionismo" aria-current="true">01</button>
+    <span class="nav-rule"></span>
+    <button class="nav-index" aria-label="Capítulo 2: Expressionismo">02</button>
+    <span class="nav-rule"></span>
+    <button class="nav-index" aria-label="Capítulo 3: Vincent van Gogh">03</button>
+    <span class="nav-rule"></span>
+    <button class="nav-index" aria-label="Capítulo 4: Vídeo final">04</button>
+  </nav>
+  <div class="side-controls" aria-label="Controles do carrossel">
+    <button class="previous" aria-label="Slide anterior">←</button>
+    <button class="next" aria-label="Próximo slide">→</button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <div class="overlay details-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-hidden="true">
+    <article class="details-screen">
+      <header class="details-header">
+        <div>
+          <p class="eyebrow" id="detail-eyebrow"></p>
+          <h2 id="detail-title"></h2>
+          <p class="panel-intro" id="detail-intro"></p>
+        </div>
+        <button class="close close-details" aria-label="Fechar detalhes">×</button>
+      </header>
+      <section class="history-section" aria-labelledby="context-heading">
+        <p class="section-kicker">01 &nbsp;·&nbsp; Panorama</p>
+        <h3 id="context-heading">Contexto histórico</h3>
+        <p class="detail-copy" id="detail-context"></p>
+      </section>
+      <section class="artist-profile" aria-labelledby="artist-name">
+        <figure class="artist-portrait">
+          <img id="artist-image" src="" alt="">
+        </figure>
+        <div class="artist-biography">
+          <p class="section-kicker">02 &nbsp;·&nbsp; Artista em destaque</p>
+          <h3 id="artist-name"></h3>
+          <p class="artist-period" id="artist-period"></p>
+          <p class="detail-copy" id="detail-bio"></p>
+        </div>
+      </section>
+      <section class="works-section" aria-labelledby="works-title">
+        <div class="works-heading">
+          <div>
+            <p class="section-kicker">03 &nbsp;·&nbsp; Galeria</p>
+            <h3 id="works-title">Cinco obras para conhecer</h3>
+          </div>
+          <div class="works-controls" aria-label="Controles da galeria de obras">
+            <button class="works-arrow works-previous" type="button" aria-label="Obras anteriores">←</button>
+            <span class="works-count" aria-live="polite">01 — 05</span>
+            <button class="works-arrow works-next" type="button" aria-label="Próximas obras">→</button>
+          </div>
+        </div>
+        <div class="works-track" id="works-track" aria-label="Cinco obras famosas"></div>
+      </section>
+    </article>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
