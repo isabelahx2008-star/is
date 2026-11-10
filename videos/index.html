@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="Assista a um vídeo sobre história da arte nesta sala de projeção.">
+  <title>Sala de projeção — Entre Luzes & Emoções</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="video-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Voltar à exposição">
+      <span class="brand-mark">E</span>
+      <span>Entre Luzes <span style="color:var(--gold)">&</span> Emoções</span>
+    </a>
+    <a class="back-link" href="../index.html">← Voltar à exposição</a>
+  </header>
+
+  <main class="video-main">
+    <div class="video-heading">
+      <p class="eyebrow">04 &nbsp;·&nbsp; Sala de projeção</p>
+      <h1>A arte em <em>movimento</em></h1>
+      <p>Uma sessão audiovisual integrada à exposição.</p>
+    </div>
+
+    <section class="video-stage" aria-label="Player de vídeo">
+      <button class="video-fullscreen" type="button">Tela cheia</button>
+      <div class="video-frame" id="video-frame">
+        <video id="video-player" controls playsinline preload="metadata" poster="../imagens/sala-de-video.jpg">
+          <source src="midia/apresentacao.mp4" type="video/mp4">
+        </video>
+        <div class="video-placeholder" id="video-placeholder">
+          <strong>Vídeo em preparação</strong>
+          <span>Adicione o arquivo em <code>videos/midia/apresentacao.mp4</code>.</span>
+        </div>
+      </div>
+      <p class="video-error" id="video-error" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer video-footer">
+    <p>Entre Luzes &amp; Emoções</p>
+    <span>História da arte · exploração visual · 1874–1900</span>
+  </footer>
+
+  <script src="video.js" defer></script>
+</body>
+</html>
