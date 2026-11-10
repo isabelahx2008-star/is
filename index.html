@@ -18,7 +18,10 @@
       <span class="brand-mark">E</span>
       <span>Entre Luzes <span style="color:var(--gold)">&</span> Emoções</span>
     </a>
-    <span class="edition">Uma jornada pela história da arte &nbsp;·&nbsp; Edição 01</span>
+    <div class="topbar-actions">
+      <button class="comparison-open" type="button">Tabela comparativa</button>
+      <span class="edition">Uma jornada pela história da arte &nbsp;·&nbsp; Edição 01</span>
+    </div>
   </header>
 
   <main class="slides" aria-label="Jornada pela história da arte">
@@ -26,21 +29,21 @@
       <div class="slide-art art-impression" role="img" aria-label="Impressão, nascer do sol, de Claude Monet"></div>
       <div class="slide-content">
         <p class="eyebrow">01 &nbsp;·&nbsp; Movimento artístico</p>
-        <h1>Impres-<br>sionismo</h1>
+        <h1>Impressionismo</h1>
         <p class="subtitle">A luz em movimento. Um olhar livre que transformou a maneira de pintar — e de ver — o mundo.</p>
         <div class="actions">
           <button class="button learn-more" data-topic="impressionismo">Saiba mais <span class="arrow">↗</span></button>
           <button class="text-button next-button">Próximo capítulo &nbsp;→</button>
         </div>
       </div>
-      <div class="slide-caption">Luz, instante &amp; atmosfera <span>— França, 1870</span></div>
+      <div class="slide-caption">Luz, instante &amp; atmosfera <span>— França, 1874</span></div>
     </section>
 
     <section class="slide" data-title="Expressionismo" aria-hidden="true">
       <div class="slide-art art-expression" role="img" aria-label="O Grito, de Edvard Munch"></div>
       <div class="slide-content">
         <p class="eyebrow">02 &nbsp;·&nbsp; Movimento artístico</p>
-        <h1>Expres-<br>sionismo</h1>
+        <h1>Expressionismo</h1>
         <p class="subtitle">A realidade vista por dentro. Cor, forma e gesto a serviço da emoção humana.</p>
         <div class="actions">
           <button class="button learn-more" data-topic="expressionismo">Saiba mais <span class="arrow">↗</span></button>
@@ -94,20 +97,62 @@
   </div>
   <div class="progress" aria-hidden="true"><span></span></div>
 
+  <footer class="site-footer home-footer">
+    <p>Entre Luzes &amp; Emoções</p>
+    <span>História da arte · exploração visual · 1874–1900</span>
+  </footer>
+
   <div class="overlay details-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-hidden="true">
     <article class="details-screen">
       <header class="details-header">
-        <div>
+        <div class="detail-banner" id="detail-banner">
           <p class="eyebrow" id="detail-eyebrow"></p>
           <h2 id="detail-title"></h2>
-          <p class="panel-intro" id="detail-intro"></p>
         </div>
+        <p class="panel-intro" id="detail-intro"></p>
         <button class="close close-details" aria-label="Fechar detalhes">×</button>
       </header>
       <section class="history-section" aria-labelledby="context-heading">
         <p class="section-kicker">01 &nbsp;·&nbsp; Panorama</p>
         <h3 id="context-heading">Contexto histórico</h3>
         <p class="detail-copy" id="detail-context"></p>
+      </section>
+      <section class="comparison-section" aria-labelledby="comparison-heading" hidden>
+        <p class="section-kicker">02 &nbsp;·&nbsp; Em perspectiva</p>
+        <h3 id="comparison-heading">Impressionismo e Expressionismo</h3>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Aspecto</th>
+                <th scope="col">Impressionismo</th>
+                <th scope="col">Expressionismo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Período</th>
+                <td>França, a partir de 1874</td>
+                <td>Europa, início do século XX</td>
+              </tr>
+              <tr>
+                <th scope="row">Interesse</th>
+                <td>Luz, cor e instantes cotidianos</td>
+                <td>Emoções e experiência interior</td>
+              </tr>
+              <tr>
+                <th scope="row">Linguagem</th>
+                <td>Pinceladas soltas e observação direta</td>
+                <td>Formas distorcidas e cores intensas</td>
+              </tr>
+              <tr>
+                <th scope="row">Artistas</th>
+                <td>Claude Monet, Edgar Degas</td>
+                <td>Edvard Munch, Ernst Ludwig Kirchner</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
       <section class="artist-profile" aria-labelledby="artist-name">
         <figure class="artist-portrait">
@@ -124,17 +169,21 @@
         <div class="works-heading">
           <div>
             <p class="section-kicker">03 &nbsp;·&nbsp; Galeria</p>
-            <h3 id="works-title">Cinco obras para conhecer</h3>
+            <h3 id="works-title">Três obras para conhecer</h3>
           </div>
           <div class="works-controls" aria-label="Controles da galeria de obras">
             <button class="works-arrow works-previous" type="button" aria-label="Obras anteriores">←</button>
-            <span class="works-count" aria-live="polite">01 — 05</span>
+            <span class="works-count" aria-live="polite">01 — 03 / 03</span>
             <button class="works-arrow works-next" type="button" aria-label="Próximas obras">→</button>
           </div>
         </div>
-        <div class="works-track" id="works-track" aria-label="Cinco obras famosas"></div>
+        <div class="works-track" id="works-track" aria-label="Três obras famosas"></div>
       </section>
     </article>
+    <footer class="site-footer">
+      <p>Entre Luzes &amp; Emoções</p>
+      <span>História da arte · exploração visual · 1874–1900</span>
+    </footer>
   </div>
 
   <script src="js/app.js" defer></script>

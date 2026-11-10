@@ -8,12 +8,11 @@ const topics = {
         artist: "Claude Monet",
         period: "Paris, 1840 — Giverny, 1926",
         portrait: "imagens/retrato-monet.jpg",
-        works: [
+    banner: "imagens/impressionismo-monet.jpg",
+    works: [
           { title: "Impressão, nascer do sol", year: "1872", image: "imagens/impressionismo-monet.jpg" },
           { title: "Mulher com sombrinha", year: "1875", image: "imagens/obra-monet-parasol.jpg" },
-          { title: "Catedral de Rouen, pleno sol", year: "1894", image: "imagens/obra-monet-catedral-rouen.jpg" },
-          { title: "Nenúfares: As nuvens", year: "1920–1926", image: "imagens/obra-monet-nenufares-nuvens.jpg" },
-          { title: "Nenúfares: Sol poente", year: "1920–1926", image: "imagens/obra-monet-nenufares-poente.jpg" }
+          { title: "Catedral de Rouen, pleno sol", year: "1894", image: "imagens/obra-monet-catedral-rouen.jpg" }
         ]
       },
       expressionismo: {
@@ -25,12 +24,11 @@ const topics = {
         artist: "Edvard Munch",
         period: "Løten, 1863 — Oslo, 1944",
         portrait: "imagens/retrato-munch.png",
+        banner: "imagens/expressionismo-munch.jpg",
         works: [
           { title: "O Grito", year: "1893", image: "imagens/expressionismo-munch.jpg" },
           { title: "Madonna", year: "1894–1895", image: "imagens/obra-munch-madonna.jpg" },
-          { title: "Ansiedade", year: "1894", image: "imagens/obra-munch-ansiedade.jpg" },
-          { title: "A Dança da Vida", year: "1899–1900", image: "imagens/obra-munch-danca-da-vida.jpg" },
-          { title: "O Vampiro", year: "1895", image: "imagens/obra-munch-vampiro.jpg" }
+          { title: "Ansiedade", year: "1894", image: "imagens/obra-munch-ansiedade.jpg" }
         ]
       },
       vangogh: {
@@ -42,12 +40,11 @@ const topics = {
         artist: "Vincent van Gogh",
         period: "Zundert, 1853 — Auvers-sur-Oise, 1890",
         portrait: "imagens/retrato-vangogh.jpg",
+        banner: "imagens/vangogh-noite-estrelada.jpg",
         works: [
           { title: "A Noite Estrelada", year: "1889", image: "imagens/vangogh-noite-estrelada.jpg" },
           { title: "Girassóis", year: "1888", image: "imagens/obra-vangogh-girassois.jpg" },
-          { title: "O Quarto em Arles", year: "1888", image: "imagens/obra-vangogh-quarto-arles.jpg" },
-          { title: "Terraço do Café à Noite", year: "1888", image: "imagens/obra-vangogh-cafe-terraco.jpg" },
-          { title: "Os Comedores de Batata", year: "1885", image: "imagens/obra-vangogh-comedores-batata.jpg" }
+          { title: "O Quarto em Arles", year: "1888", image: "imagens/obra-vangogh-quarto-arles.jpg" }
         ]
       }
     };
@@ -56,13 +53,23 @@ const topics = {
     const indicators = [...document.querySelectorAll(".nav-index")];
     const progress = document.querySelector(".progress span");
     const detailsOverlay = document.querySelector(".details-overlay");
+    const detailsBanner = document.querySelector("#detail-banner");
+    const comparisonSection = document.querySelector(".comparison-section");
     const worksTrack = document.querySelector("#works-track");
     const worksCount = document.querySelector(".works-count");
     let activeIndex = 0;
-    let timer;
     let touchStartX = 0;
+    let autoplayPaused = false;
+    let autoplayTimer;
 
-    function showSlide(index) {
+    function pauseAutoplay() {
+      if (autoplayPaused) return;
+      autoplayPaused = true;
+      window.clearInterval(autoplayTimer);
+    }
+
+    function showSlide(index, manual = true) {
+      if (manual) pauseAutoplay();
       const nextIndex = (index + slides.length) % slides.length;
       slides[activeIndex].classList.remove("active");
       slides[activeIndex].setAttribute("aria-hidden", "true");
@@ -74,16 +81,10 @@ const topics = {
       indicators[activeIndex].classList.add("active");
       indicators[activeIndex].setAttribute("aria-current", "true");
       progress.style.width = `${((activeIndex + 1) / slides.length) * 100}%`;
-      restartTimer();
-    }
-
-    function restartTimer() {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => showSlide(activeIndex + 1), 6000);
     }
 
     function openOverlay(overlay) {
-      window.clearTimeout(timer);
+      pauseAutoplay();
       overlay.classList.add("open");
       overlay.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -95,11 +96,11 @@ const topics = {
       overlay.classList.remove("open");
       overlay.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
-      restartTimer();
     }
 
     function showDetails(topicKey) {
       const topic = topics[topicKey];
+      comparisonSection.hidden = topicKey !== "expressionismo";
       document.querySelector("#detail-eyebrow").textContent = topic.eyebrow;
       document.querySelector("#detail-title").textContent = topic.title;
       document.querySelector("#detail-intro").textContent = topic.intro;
@@ -107,13 +108,14 @@ const topics = {
       document.querySelector("#detail-bio").textContent = topic.bio;
       document.querySelector("#artist-name").textContent = topic.artist;
       document.querySelector("#artist-period").textContent = topic.period;
+      detailsBanner.style.backgroundImage = `url('${topic.banner}')`;
       const portrait = document.querySelector("#artist-image");
       portrait.src = topic.portrait;
       portrait.alt = `Retrato de ${topic.artist}`;
       worksTrack.replaceChildren(...topic.works.map((work, index) => {
         const card = document.createElement("article");
         card.className = "work-card";
-        card.setAttribute("aria-label", `Obra ${index + 1} de 5: ${work.title}`);
+        card.setAttribute("aria-label", `Obra ${index + 1} de ${topic.works.length}: ${work.title}`);
 
         const image = document.createElement("img");
         image.src = work.image;
@@ -139,18 +141,25 @@ const topics = {
         return card;
       }));
       worksTrack.scrollLeft = 0;
+      detailsOverlay.scrollTop = 0;
       openOverlay(detailsOverlay);
       requestAnimationFrame(updateWorksControls);
     }
 
+    document.querySelector(".comparison-open").addEventListener("click", () => {
+      showDetails("expressionismo");
+      requestAnimationFrame(() => comparisonSection.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+
     function updateWorksControls() {
       const lastIndex = Math.max(worksTrack.children.length - 1, 0);
       const cardWidth = worksTrack.firstElementChild?.getBoundingClientRect().width || 1;
-      const activeIndex = Math.min(Math.round(worksTrack.scrollLeft / (cardWidth + 18)), lastIndex);
-      const visibleCount = Math.min(3, worksTrack.children.length - activeIndex);
+      const gap = Number.parseFloat(getComputedStyle(worksTrack).columnGap) || 0;
+      const activeIndex = Math.min(Math.round(worksTrack.scrollLeft / (cardWidth + gap)), lastIndex);
+      const visibleCount = Math.max(1, Math.floor((worksTrack.clientWidth + gap) / (cardWidth + gap)));
       const firstVisible = worksTrack.children.length ? activeIndex + 1 : 0;
       const lastVisible = Math.min(activeIndex + visibleCount, worksTrack.children.length);
-      worksCount.textContent = `${String(firstVisible).padStart(2, "0")} — ${String(lastVisible).padStart(2, "0")} / 05`;
+      worksCount.textContent = `${String(firstVisible).padStart(2, "0")} — ${String(lastVisible).padStart(2, "0")} / ${String(worksTrack.children.length).padStart(2, "0")}`;
       document.querySelector(".works-previous").disabled = worksTrack.scrollLeft <= 2;
       document.querySelector(".works-next").disabled =
         worksTrack.scrollLeft + worksTrack.clientWidth >= worksTrack.scrollWidth - 2;
@@ -192,10 +201,16 @@ const topics = {
       }
     });
     document.querySelector(".slides").addEventListener("touchstart", event => {
+      pauseAutoplay();
       touchStartX = event.changedTouches[0].screenX;
     }, { passive: true });
     document.querySelector(".slides").addEventListener("touchend", event => {
       const distance = event.changedTouches[0].screenX - touchStartX;
       if (Math.abs(distance) > 65) showSlide(activeIndex + (distance < 0 ? 1 : -1));
     }, { passive: true });
-    restartTimer();
+
+    autoplayTimer = window.setInterval(() => {
+      if (!document.hidden && !detailsOverlay.classList.contains("open")) {
+        showSlide(activeIndex + 1, false);
+      }
+    }, 2000);
